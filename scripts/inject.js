@@ -3,6 +3,7 @@
  * 광고 제거 및 DOM 요소 조작 기능 제공
  */
 /* m5 맥북에서 수정11, 다시 윈도우에서 수정. */
+/* fork test */
 console.log("inject.js");
 
 // URL 공통 사용
