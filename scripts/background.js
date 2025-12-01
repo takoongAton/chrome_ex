@@ -7,3 +7,4 @@ function backgroundFn(){
 window.backgroundFn = backgroundFn;
 backgroundFn();
 alert("test123")
+/* test123 */
