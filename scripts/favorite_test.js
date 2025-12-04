@@ -43,7 +43,10 @@ if(url.includes("prod.danawa.com")){
         { selector: "#adPointArea", removeFlag: true }, // 상품 목록 중간 광고 영역 : 애드 포인트
         { selector: "#premiumBanner", removeFlag: false }, // 왼쪽 날개배너 프리미엄 배너
         { selector: "#naverPowerShoppingArea", removeFlag: true }, // 상품 목록 페이지 상단 광고 영역 : 이런 상품 어때요
+        { selector: "#adSmartAreaTop", removeFlag: true }, // 상품 목록 페이지 중간 광고 영역 : 오늘 봐야 할 추천 상품
         { selector: "#powerClickListArea", removeFlag: true }, // 상품 목록 페이지 하단 광고 영역 : 파워클릭
+        { selector: "#mainAdStar", removeFlag: true }, // 상품 목록 페이지 하단 광고 영역 : 애드 스타
+        { selector: "#powerLink_new_product", removeFlag: true }, // 상품 목록 페이지 하단 광고 영역 : 파워 링크
         { selector: ".aside_media", removeFlag: false, extra: () => {
             const danawaContainer = document.querySelector("#danawa_container");
             if (danawaContainer) danawaContainer.style.paddingRight = "0";
