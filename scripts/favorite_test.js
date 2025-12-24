@@ -14,8 +14,8 @@ if(url.includes("danawa.com")){
         .aside-vs>.box__layer>.box__inner {width:270px;}
         .aside-vs>.box__layer .list__slot .box__product .box__thumbnail {width:80px;}
         // .category__list__btn:before {content:unset;}
-
         #brandHallArea {display:none !important;}
+        .main_ad_prodlist {display:none;}
     `;
     insertCustomCss(customCss, siteName);
     /* // custom css */
@@ -47,6 +47,7 @@ if(url.includes("prod.danawa.com")){
         { selector: "#powerClickListArea", removeFlag: true }, // 상품 목록 페이지 하단 광고 영역 : 파워클릭
         { selector: "#mainAdStar", removeFlag: true }, // 상품 목록 페이지 하단 광고 영역 : 애드 스타
         { selector: "#powerLink_new_product", removeFlag: true }, // 상품 목록 페이지 하단 광고 영역 : 파워 링크
+        { selector: ".main_ad_prodlist", removeFlag: true }, // 상품 목록 페이지 조건검색 상단 광고 영역 : 애드리더
         { selector: ".aside_media", removeFlag: false, extra: () => {
             const danawaContainer = document.querySelector("#danawa_container");
             if (danawaContainer) danawaContainer.style.paddingRight = "0";
