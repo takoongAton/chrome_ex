@@ -18,7 +18,7 @@ window.addEventListener("load", function(){
     /* ====== 기업형 광고 제거 ====== */
     
     /* 랜덤 사이트 애드오피스(https://adop.cc/) 광고 제거 */
-    let insAdsbyadops = this.document.querySelectorAll("ins");
+    let insAdsbyadops = document.querySelectorAll("ins");
     if(insAdsbyadops.length > 0) {
         setTimeout(() => {
             insAdsbyadops.forEach(function(item,index){
@@ -37,7 +37,7 @@ window.addEventListener("load", function(){
     /* // 랜덤 사이트 애드오피스(https://adop.cc/) 광고 제거 */
 
     /* 랜덤 사이트 구글 광고 제거 */
-    let adsbygoogles = this.document.querySelectorAll(".adsbygoogle");
+    let adsbygoogles = document.querySelectorAll(".adsbygoogle");
     if(adsbygoogles.length > 0) {
         setTimeout(() => {
             adsbygoogles.forEach(function(item,index){
@@ -53,7 +53,7 @@ window.addEventListener("load", function(){
     /* // 랜덤 사이트 구글 광고 제거 */
 
     /* iframe 에 담겨있는 구글 광고 제거 (상위 div 삭제) */
-    let adsbygooglesIframe = this.document.querySelectorAll("iframe");
+    let adsbygooglesIframe = document.querySelectorAll("iframe");
     if(adsbygooglesIframe.length > 0) {
         setTimeout(() => {
             adsbygooglesIframe.forEach(function(item,index){

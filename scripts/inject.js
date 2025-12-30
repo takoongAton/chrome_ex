@@ -44,6 +44,7 @@ function applyAnimationEnd(endItem, aniState){
 
 function removeDynamicElements(){
     document.body.style.overflow = "";
+    const delArr = DELETE_SELECTORS.join(',');
     const delList = document.querySelectorAll(delArr);
     if(delList.length > 0) {
         delList.forEach(function(item){

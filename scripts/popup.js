@@ -1,7 +1,10 @@
 /* 툴바의 아이콘이 눌리면 실행 되는 스크립트 */
-document.querySelector(".btn_chrome_eee").addEventListener("click", function(){
-    alert("버튼 눌러도 뭐 없다");
-})
+let btnChromeEee = document.querySelector(".btn_chrome_eee");
+if(btnChromeEee) {
+    btnChromeEee.addEventListener("click", function(){
+        alert("버튼 눌러도 뭐 없다");
+    });
+}
 
 // alert("popup.html alert")
 

@@ -1,4 +1,3 @@
-console.log("favorite.js");
 
 
 window.addEventListener("load", function(){
@@ -9,20 +8,43 @@ if(url.includes("danawa.com")){
     /* custom css */
     let siteName = 'danawa';
     const customCss = `
+        /* 새로고침 이슈로 삭제가 안되는 경우 */
+
         .category__list__btn {box-sizing:border-box; justify-content:space-between; width:100%; height:auto; padding-right:8px; font-size:14px; color:#fff; font-weight:600; text-indent:0; text-decoration:none; text-shadow:0 1px 2px rgba(0,0,0,0.16);}
         .category__list__row.active .category__list__btn {color:#000; text-decoration:none;}
         .aside-vs>.box__layer>.box__inner {width:270px;}
         .aside-vs>.box__layer .list__slot .box__product .box__thumbnail {width:80px;}
-        // .category__list__btn:before {content:unset;}
+
         #brandHallArea {display:none !important;}
         .main_ad_prodlist {display:none;}
+
+        /* 상품 목록에 붙는 타사 광고 */
+        .product_list .prod_ad_item {display:none !important;}
+        
+        /* 검색 상단 이런 상품 어때요 */
+        #powerShoppingAreaTop {display:none;}
+        
+        /* 검색 중간 오늘 봐야 할 상품 */
+        li#adSmartAreaTop {display:none !important;}
+
+        /* 검색 중간 애드 캐스터 */
+        .ad_section {display:none !important}
+
+        /* 상품 비교 버튼 간격 수정 */
+        .aside-vs>.box__layer .box__search {width:100%; gap:unset; margin:0;}
+
+        /* 상품 비교 속도 수정 */
+        .aside-vs>.box__layer>.box__inner {transition:all 0.5s ease-in-out !important;}
+        
+        /* 상품 비교시 컨테이너 이동 효과 추가 */
+        .aside_show #danawa_container {transition:padding 0.2s ease-in-out;}
     `;
     insertCustomCss(customCss, siteName);
     /* // custom css */
 
 
     // 상단 서브 메뉴 (비교사이트)
-    let cwGnb = this.document.querySelector(".cw-gnb");
+    let cwGnb = document.querySelector(".cw-gnb");
     if(cwGnb) {
         conAreaDel(cwGnb, false);
     }
@@ -37,17 +59,20 @@ if(url.includes("prod.danawa.com")){
     /* 배너 영역 삭제 관련 */
     // 선택자와 conAreaDel의 두 번째 인자를 한 번에 정의
     const danawaElementsToRemove = [
-        { selector: "#main-middlebnr", removeFlag: true }, // 메인 중앙 배너 영역 삭제
+        { selector: "#main-middlebnr", removeFlag: false }, // 메인 중앙 배너 영역 삭제
         { selector: ".ttop_banner", removeFlag: false }, // 다나와 상단 광고,
-        { selector: "#mainAdReader", removeFlag: true }, // 상품 목록 상단 광고 영역 애드 리더
-        { selector: "#adPointArea", removeFlag: true }, // 상품 목록 중간 광고 영역 : 애드 포인트
+        { selector: "#mainAdReader", removeFlag: false }, // 상품 목록 상단 광고 영역 애드 리더
+        { selector: "#adPointArea", removeFlag: false }, // 상품 목록 중간 광고 영역 : 애드 포인트
         { selector: "#premiumBanner", removeFlag: false }, // 왼쪽 날개배너 프리미엄 배너
-        { selector: "#naverPowerShoppingArea", removeFlag: true }, // 상품 목록 페이지 상단 광고 영역 : 이런 상품 어때요
-        { selector: "#adSmartAreaTop", removeFlag: true }, // 상품 목록 페이지 중간 광고 영역 : 오늘 봐야 할 추천 상품
-        { selector: "#powerClickListArea", removeFlag: true }, // 상품 목록 페이지 하단 광고 영역 : 파워클릭
-        { selector: "#mainAdStar", removeFlag: true }, // 상품 목록 페이지 하단 광고 영역 : 애드 스타
-        { selector: "#powerLink_new_product", removeFlag: true }, // 상품 목록 페이지 하단 광고 영역 : 파워 링크
-        { selector: ".main_ad_prodlist", removeFlag: true }, // 상품 목록 페이지 조건검색 상단 광고 영역 : 애드리더
+        { selector: "#naverPowerShoppingArea", removeFlag: false }, // 상품 목록 페이지 상단 광고 영역 : 이런 상품 어때요
+        { selector: "#adSmartAreaTop", removeFlag: false }, // 상품 목록 페이지 중간 광고 영역 : 오늘 봐야 할 추천 상품
+        { selector: "#powerClickListArea", removeFlag: false }, // 상품 목록 페이지 하단 광고 영역 : 파워클릭
+        { selector: "#mainAdStar", removeFlag: false }, // 상품 목록 페이지 하단 광고 영역 : 애드 스타
+        { selector: "#powerLink_new_product", removeFlag: false }, // 상품 목록 페이지 하단 광고 영역 : 파워 링크
+        { selector: ".main_ad_prodlist", removeFlag: false }, // 상품 목록 페이지 조건검색 상단 광고 영역 : 애드리더
+        { selector: "#powerShoppingAreaTop", removeFlag: false }, // 상품 검색 결과 상단 이런 상품 어때요
+
+        
         { selector: ".aside_media", removeFlag: false, extra: () => {
             const danawaContainer = document.querySelector("#danawa_container");
             if (danawaContainer) danawaContainer.style.paddingRight = "0";
@@ -93,6 +118,24 @@ if(url.includes("prod.danawa.com")){
         });
     }
     /* // 상품 비교 선택시 aside-vs 영역 간섭 수정 */
+
+
+    let ad_floating_banner = document.querySelector(".ad-floating-banner.active");
+    if(ad_floating_banner) {
+        ad_floating_banner.querySelector(".box__close-today").click();
+    }
+
+    /* 이벤트 팝업 닫기 */
+    let pop_event_item = document.querySelector(".pop_event_item");
+    if(pop_event_item) {
+        pop_event_item.querySelector(".pop_close").click();
+    }
+
+    /* 플로팅 배너 오늘 하루 보지않기 클릭 */
+    let ad_floating_wrap = document.querySelector(".ad_floating_wrap");
+    if(ad_floating_wrap) {
+        ad_floating_wrap.querySelector("#not_today").click();
+    }
 
 }
 /* // danawa(다나와 - 상품 목록) */
@@ -218,7 +261,7 @@ if (url.includes("https://www.naver.com/")){
                 diejfie.style.height = 0;
                 // diejfie.style.display = "none";
             }
-            // this.document.querySelector(".Layout-module__banner_area___CUXNe").style.display = "none";
+            // document.querySelector(".Layout-module__banner_area___CUXNe").style.display = "none";
             // "#newsstand + a" // 네이버 메인 모듈 광고 Layout-module__banner_area ()
             // 로딩 후 추가 삽입으로 인해 불가.
 
@@ -227,7 +270,7 @@ if (url.includes("https://www.naver.com/")){
                 newsstand.style.marginTop = 0 + 'px';
             }
 
-            let iframe_rightShopping = this.document.querySelectorAll("iframe");
+            let iframe_rightShopping = document.querySelectorAll("iframe");
             if(iframe_rightShopping.length > 0){
                 console.log("iframe_rightShopping")
                 iframe_rightShopping.forEach(function(item) {
@@ -247,7 +290,7 @@ if (url.includes("https://www.naver.com/")){
 
 // 네이버 검색 결과 화면 상단 파워링크 영역 삭제 
 if(url.includes("https://search.naver.com/search.naver")){
-    let ad_section = this.document.querySelector(".ad_section");
+    let ad_section = document.querySelector(".ad_section");
     if(ad_section){
         console.log(ad_section);
         fadeOutElement(ad_section, true)
@@ -288,7 +331,7 @@ if (url.includes("news.naver.com")){
         conAreaDel(pressAside);
     }
     
-    let adArea = this.document.querySelector(".ad_area");
+    let adArea = document.querySelector(".ad_area");
     if(adArea) {
         conAreaDel(adArea);
     }
@@ -303,13 +346,13 @@ if (url.includes("news.naver.com")){
 /* ========== https://manatoki468.net/(마나토끼) ========== */
 if(url.includes("manatoki")){
     
-    let mainBannerView = this.document.querySelector("#main-banner-view");
+    let mainBannerView = document.querySelector("#main-banner-view");
     if(mainBannerView) {
         fadeOutElement(mainBannerView, true);
         // conAreaDel(mainBannerView, true);
     }
 
-    let hd_pop = this.document.querySelector("#hd_pop"); // 메인페이지 팝업
+    let hd_pop = document.querySelector("#hd_pop"); // 메인페이지 팝업
     if(hd_pop){
         let hd_pop_btns = hd_pop.querySelectorAll("button.hd_pops_close");
         if(hd_pop_btns && hd_pop_btns.length > 0) {
@@ -320,12 +363,12 @@ if(url.includes("manatoki")){
     }
     
     if(url.includes("comic")){ // 뷰페이지에서만 가림
-        let atWrap = this.document.querySelector("#at-wrap");
+        let atWrap = document.querySelector("#at-wrap");
         if(atWrap) {
             atWrap.style.paddingRight = "0"
         }
         
-        let atRight = this.document.querySelector("#at-right");
+        let atRight = document.querySelector("#at-right");
         if(atRight) {
             conAreaDel(atRight, true);
         }
@@ -410,14 +453,14 @@ if (/(chatgpt\.com|gemini\.google\.com)/.test(url)) {
 
         setTimeout(() => {
             /* // 왜 있는지 확인 후 삭제
-            let cardContainer = this.document.querySelectorAll(".card-container");
+            let cardContainer = document.querySelectorAll(".card-container");
             if(cardContainer) {
                 cardContainer.forEach(function(item){
                     //item.style.display = "none";
                 })
             }
             */
-            let mediaLibraryTopContainer = this.document.querySelector(".media-library-top-container");
+            let mediaLibraryTopContainer = document.querySelector(".media-library-top-container");
             if(mediaLibraryTopContainer) {
                 mediaLibraryTopContainer.classList.remove("show-ad");
             }
@@ -435,7 +478,11 @@ if (/(chatgpt\.com|gemini\.google\.com)/.test(url)) {
         /* custom css */
         let siteName = 'coupang';
         const customCss = `
-            /* ㅇㅇㅇ */
+            /* 검색 결과 상단 광고 */
+            #srpKeywordProductTopBanner {display:none;}
+            
+            /* 검색 목록 중간에 낀 광고 */
+            .best-seller {display:none};
         `;
         insertCustomCss(customCss, siteName);
         /* // custom css */
@@ -445,6 +492,33 @@ if (/(chatgpt\.com|gemini\.google\.com)/.test(url)) {
         if(ad_timeboard) {
             conAreaDel(ad_timeboard);
         }
+
+        let srpKeywordProductTopBanner = document.querySelector("#srpKeywordProductTopBanner");
+        if(srpKeywordProductTopBanner) {
+            let tempDiv = srpKeywordProductTopBanner.parentElement;
+            conAreaDel(tempDiv.parentElement);
+            // 상위 두개 div 삭제 하면 좋음.
+        }
+
+        
+
+        setTimeout(() => {
+            let product_list = document.querySelector("#product-list");
+            if(product_list){
+                // 1. 클래스명에 'admark'가 포함된 모든 div 요소를 선택합니다.
+                const AdMarks = product_list.querySelectorAll('div[class*="AdMark"]');
+                // 2. 각 요소의 가장 가까운 상위 li 요소를 찾아 숨깁니다.
+                AdMarks.forEach(div => {
+                    const parentLi = div.closest('li');
+                    if (parentLi) {
+                        parentLi.style.display = 'none';
+                    }
+                });
+            }
+        }, 100);
+
+
+        
     }
 /* // ========== coupang.com/ ========== */
 
@@ -499,7 +573,7 @@ if (/(chatgpt\.com|gemini\.google\.com)/.test(url)) {
         }
 
         /* 메인 쇼핑 */
-        let board_shopping = this.document.querySelector(".board_g.board_shopping");
+        let board_shopping = document.querySelector(".board_g.board_shopping");
         if(board_shopping) {
             board_shopping.style.display = "none";
         }
@@ -513,14 +587,14 @@ if (/(chatgpt\.com|gemini\.google\.com)/.test(url)) {
         }
 
         // 컨텐츠 영역 최상단 광고 영역
-        let kakao_ad_area = this.document.querySelector(".kakao_ad_area");
+        let kakao_ad_area = document.querySelector(".kakao_ad_area");
         if(kakao_ad_area) {
             kakao_ad_area.closest(".box_g").style.display = "none";
         }
 
 
         /* 메인 추천 게임 */
-        let box_game = this.document.querySelector(".box_g.box_game")
+        let box_game = document.querySelector(".box_g.box_game")
         if(box_game) {
             box_game.style.display = "none";
         }
@@ -528,7 +602,7 @@ if (/(chatgpt\.com|gemini\.google\.com)/.test(url)) {
 
         /* 메인 핫딜 */
         // shoppinghow-1739518615497
-        let hotdeal = this.document.querySelectorAll(".box_g > iframe");
+        let hotdeal = document.querySelectorAll(".box_g > iframe");
         if(hotdeal) {
             hotdeal.forEach(function(item){
                 let attrrrr = item.getAttribute("id");;
@@ -540,7 +614,7 @@ if (/(chatgpt\.com|gemini\.google\.com)/.test(url)) {
         /* // 메인 핫딜 */
 
         /* 메인 aside 랭킹 */
-        let box_ranking = this.document.querySelector(".box_g.box_ranking")
+        let box_ranking = document.querySelector(".box_g.box_ranking")
         if(box_ranking) {
             box_ranking.style.display = "none";
         }
@@ -573,7 +647,7 @@ if (/(chatgpt\.com|gemini\.google\.com)/.test(url)) {
         }
 
         /* 기사 우측, 블로그성 기사 우측 영역 */
-        let mainEtc = this.document.querySelector(".main-etc");
+        let mainEtc = document.querySelector(".main-etc");
         if(mainEtc) {
             conAreaDel(mainEtc);
         }
@@ -585,7 +659,7 @@ if (/(chatgpt\.com|gemini\.google\.com)/.test(url)) {
     // 다음 검색 결과 화면
     if(url.includes("https://search.daum.net/")){
         /* 검색결과 화면의 파워링크, 스페셜링크, 프리미엄링크, 애드센스, 스폰서 박스(aside) 삭제 */
-        // let ad_sch = this.document.querySelectorAll(".ad_sch, .content_sponso");
+        // let ad_sch = document.querySelectorAll(".ad_sch, .content_sponso");
         // if(ad_sch.length > 0){
         //     ad_sch.forEach(function(item){
         //         let itemTest = item.parentElement;

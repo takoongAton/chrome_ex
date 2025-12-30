@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "bored",
     "description": "Brave 전용. 광고를 숨겨서 화면을 넓게 써보자. 광고 허용 요청 삭제, 스크롤 고정 풀기. 눈에서만 숨길뿐.(특정 페이지의 내용이 하나도 보이지 않으면 끄고 사용)",
-    "version": "251106",
+    "version": "251229",
     "icons": {
         "48": "./images/ico_danger.png",
         "96": "./images/ico_danger.png"

@@ -18,13 +18,13 @@ window.addEventListener("load", function(){
 
 
         // 페이지 상단 배너 
-        let asideTopBnr01 = this.document.querySelector(".aside-top-bnr01");
+        let asideTopBnr01 = document.querySelector(".aside-top-bnr01");
         if(asideTopBnr01) {
             asideTopBnr01.classList.add(displayNoneImportant);
         }
 
         // aside 태그로 되어있는 것들 숨김 (광고영역)
-        let asideBox = this.document.querySelectorAll("aside");
+        let asideBox = document.querySelectorAll("aside");
         if(asideBox.length > 0) {
             setTimeout(() => {
                 asideBox.forEach(function(item,index){
@@ -34,7 +34,7 @@ window.addEventListener("load", function(){
         }
 
         // 컨텐츠 우측 다른 기사 영역
-        let section02 = this.document.querySelector(".section02");
+        let section02 = document.querySelector(".section02");
         if(section02) {
             conAreaDel(section02, false);
         }
@@ -48,7 +48,7 @@ window.addEventListener("load", function(){
     /* 여성신문 (https://www.womennews.co.kr/news) */
     if(url.includes("https://www.womennews.co.kr/news")){
         // 외부 광고영역 제거
-        let adTemplate = this.document.querySelectorAll(".ad-template");
+        let adTemplate = document.querySelectorAll(".ad-template");
         if(adTemplate.length > 0) {
             setTimeout(() => {
                 adTemplate.forEach(function(item,index){
@@ -58,7 +58,7 @@ window.addEventListener("load", function(){
         }
 
         // 여성신문 자체 광고영역 제거
-        let bannerBox = this.document.querySelectorAll(".banner_box");
+        let bannerBox = document.querySelectorAll(".banner_box");
         if(bannerBox.length > 0) {
             setTimeout(() => {
                 bannerBox.forEach(function(item,index){
@@ -68,13 +68,13 @@ window.addEventListener("load", function(){
         }
 
         // 후원하기 삭제
-        let supportBox = this.document.querySelector("#support_box");
+        let supportBox = document.querySelector("#support_box");
         if(supportBox) {
             supportBox.classList.add(displayNoneImportant);
         }
 
         // 우측 플로팅 배너 삭제
-        let wpAdbnRoot = this.document.querySelector("#wp_adbn_root");
+        let wpAdbnRoot = document.querySelector("#wp_adbn_root");
         if(wpAdbnRoot) {
             wpAdbnRoot.classList.add(displayNoneImportant);
         }
@@ -89,7 +89,7 @@ window.addEventListener("load", function(){
     if(url.includes("edaily.co.kr")){
 
         /* 페이지 상단 광고 영역 */
-        let special_area = this.document.querySelector(".special_area");
+        let special_area = document.querySelector(".special_area");
         if(special_area) {
             conAreaDel(special_area);
         }
@@ -131,13 +131,13 @@ window.addEventListener("load", function(){
         }
 
         /* Dable 광고 영역 */
-        let boxshow_footer_dable = this.document.querySelector(".boxshow_footer_dable");
+        let boxshow_footer_dable = document.querySelector(".boxshow_footer_dable");
         if(boxshow_footer_dable) {
             conAreaDel(boxshow_footer_dable);
         }
         
         /* 오늘의 주요기사 */
-        let aside_bottom = this.document.querySelector("#aside_bottom");
+        let aside_bottom = document.querySelector("#aside_bottom");
         if(aside_bottom) {
             conAreaDel(aside_bottom);
         }
@@ -149,8 +149,8 @@ window.addEventListener("load", function(){
 
      // 한겨례 뉴스
     if(url.includes("hani.co.kr")){
-        let aRight = this.document.querySelector(".a-right");
-        let aLeft = this.document.querySelector(".a-left");
+        let aRight = document.querySelector(".a-right");
+        let aLeft = document.querySelector(".a-left");
         if(aRight) {
             conAreaDel(aRight);
             conAreaExtend(aLeft)
@@ -158,15 +158,15 @@ window.addEventListener("load", function(){
             aLeft.style.padding = "0";
         }
 
-        let adBox01 = this.document.querySelector("#ad_box01")
-        let adBox01div = this.document.querySelector("#ad_box01 + div")
+        let adBox01 = document.querySelector("#ad_box01")
+        let adBox01div = document.querySelector("#ad_box01 + div")
         if(adBox01) {
             conAreaStyle(adBox01div);
             conAreaDel(adBox01);
             aLeft.style.margin = "0 auto";
         }
 
-        let articleText = this.document.querySelectorAll(".article-text ~ div")
+        let articleText = document.querySelectorAll(".article-text ~ div")
         articleText.forEach(function(item){
             conAreaStyle(item);
         })
@@ -178,33 +178,33 @@ window.addEventListener("load", function(){
 
     // etoday.co.kr/news
     if(url.includes("etoday.co.kr/news")){
-        let rContentModule = this.document.querySelector(".r_content_module");
+        let rContentModule = document.querySelector(".r_content_module");
         if(rContentModule) {
             conAreaStyle(rContentModule);
         }
 
-        let lContentModule = this.document.querySelector(".l_content_module");
+        let lContentModule = document.querySelector(".l_content_module");
         if(lContentModule) {
             conAreaExtend(lContentModule)
         }
 
-        let quickLeft = this.document.querySelector("#quick_left");
+        let quickLeft = document.querySelector("#quick_left");
         if(quickLeft) {
             conAreaStyle(quickLeft);
         }
 
-        let quickRight = this.document.querySelector("article.containerWrap > span");
+        let quickRight = document.querySelector("article.containerWrap > span");
         if(quickRight) {
             conAreaStyle(quickRight);
         }
 
-        let viewInnerAd = this.document.querySelector(".articleView > p + span");
+        let viewInnerAd = document.querySelector(".articleView > p + span");
         if(viewInnerAd) {
             conAreaStyle(viewInnerAd);
         }
 
         // 주요 뉴스
-        let majListWrap = this.document.querySelector(".maj_list_wrap"); 
+        let majListWrap = document.querySelector(".maj_list_wrap"); 
         if(majListWrap) {
             conAreaStyle(majListWrap);
         }
